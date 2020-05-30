@@ -1,3 +1,4 @@
+navigator.serviceWorker&&navigator.serviceWorker.register("sw.js")
 let pr=1e5,fx=t=>Math.round(t*pr)/pr
 function G(){let t={c:{u:5,b:1e3,c:20},p:{u:0,b:0,c:0},v:{u:0,b:0,c:0},d:{u:0,b:0,c:0}}
 function u(u,c){"u"===c?(t[u].b=fx(t[u].u*u2b),t[u].c=fx(t[u].b/c2b)):"b"===c?(t[u].u=fx(t[u].b/u2b),t[u].c=fx(t[u].b/c2b)):"c"===c&&(t[u].b=fx(t[u].c*c2b),t[u].u=fx(t[u].b/u2b))}let c=()=>t.p.u*u2b+t.p.b+t.p.c*c2b
