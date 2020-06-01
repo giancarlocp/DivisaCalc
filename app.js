@@ -1,4 +1,4 @@
-//navigator.serviceWorker&&navigator.serviceWorker.register("sw.js")
+navigator.serviceWorker&&navigator.serviceWorker.register("sw.js")
 const pr=1e5,fx=b=>Math.round(b*pr)/pr
 function G({attrs:b}){console.log("G",b)
 const c={f:{u:5,b:1e3,c:20},p:{u:0,b:0,c:0},v:{u:0,b:0,c:0},d:{u:0,b:0,c:0},c:{u:0,b:0,c:0},e:{u:0,b:0,c:0}}
