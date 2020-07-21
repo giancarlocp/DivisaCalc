@@ -12,11 +12,11 @@ let input_=(oninput)=>(value,id)=>m('input.item[type=number][min=0]',{style:styl
 let noRow=({u,b,c},r,l)=>[noedit(u),noedit(b),noedit(c),m('label',l),]
 let row_=(input)=>({u,b,c},r,l)=>[input(u,r+'u'),input(b,r+'b'),input(c,r+'c'),m(l?'label.v':'',l),]
 hideRow=[m(''),m(''),m(''),m('.t','.')]
-function G(){let u2b,c2b
+function G(){let u2b,u2c
 let d={r:'u',f:{u:5,b:0,c:0},p:{u:0,b:0,c:0},v:{u:0,b:0,c:0},d:{u:0,b:0,c:0},c:{u:0,b:0,c:0},e:{u:0,b:0,c:0},}
-let F={ub:u=>u*u2b,bu:b=>b/u2b,uc:u=>u*u2b/c2b,cb:c=>c*c2b,bc:b=>b/c2b,cu:c=>c*c2b/u2b,}
+let F={ub:u=>u*u2b,bu:b=>b/u2b,cb:c=>c/u2c*u2b,uc:u=>u*u2c,cu:c=>c/u2c,bc:b=>b/u2b*u2c,}
 function cost(r,c,m){d[r]=mapObj(conv(F,c,m),d[r])}
-let t=({u,b,c})=>u*u2b+b+c*c2b
+let t=({u,b,c})=>u*u2b+b+c*u2c
 function pago(z){let[j,k,l]=z
 let v=fx(t(d[k])-d[j].b)
 d[l]=mapObj(conv(F,'b',v),d[l])}
@@ -35,15 +35,15 @@ pag()}
 let input=input_(change)
 let inRow=row_(input_(change))
 return{view({attrs:s}){u2b=s.u2b
-c2b=s.c2b
+u2c=s.u2c
 all(d.r,d.f[d.r])
-return m('.container',[m('label','$'),m('label','Bs'),m('label','Co'),m(''),inRow(d.f,'f','Fact'),inRow(d.p,'p','Pago'),noRow(d.v,'v','Vuelto'),hideRow,inRow(d.d,'d','Devol'),noRow(d.c,'c','Cierre'),hideRow,inRow(d.e,'e'),])}}}
+return m('.container',[m('label.gr','$'),m('label.vt','Bs'),m('label.yl','Co'),m(''),inRow(d.f,'f','Fact'),inRow(d.p,'p','Pago'),noRow(d.v,'v','Vuelto'),hideRow,inRow(d.d,'d','Devol'),noRow(d.c,'c','Cierre'),hideRow,inRow(d.e,'e'),])}}}
 let LocalStore={get:(k)=>JSON.parse(localStorage.getItem(k)),set(k,state){localStorage.setItem(k,JSON.stringify(state))}}
-function App(){let s={u2b:200,c2b:50}
+function App(){let s={u2b:243,u2c:3.6}
 Object.assign(s,LocalStore.get('s'))
 function change({target:{value,id}}){value=num(value)
 s[id]=value
 LocalStore.set('s',s)}
 let input=(label,val,id)=>m('.itex',[m('label.h',label),input_(change)(val,id)])
-return{view:(vnode)=>m('',[m('.flx',[input('Bs/$',s.u2b,'u2b'),input('Bs/Co',s.c2b,'c2b'),]),m(G,{...s}),])}}
+return{view:(vnode)=>m('',[m('.flx',[input('Bs/$',s.u2b,'u2b'),input('Co/$',s.u2c,'u2c'),]),m(G,{...s}),])}}
 m.mount(document.getElementById('app'),App)
